@@ -38,8 +38,12 @@ def main():
     data_costos['Costos generales'] = data_costos.iloc[:, 6:11].sum(axis=1)
     data_costos_operativos = data_costos[['Fecha', 'Costos Operativos']]
     data_costos_generales = data_costos[['Fecha', 'Costos generales']]
-
-    print(data_costos)
+    
+    # Utilidad
+    data_utilidad = pd.read_csv('Data/Utilidad mensual.csv')
+    data_utilidad['Periodo'] = pd.to_datetime(data_utilidad['Periodo']).dt.to_period('M')
+    
+    
 
     # Preparar ingresos para KPI
 
@@ -105,15 +109,18 @@ def main():
     KPI_CO_KMR_MENSUAL_AM = calcular_kpi(costos_operativos_mensuales_am, km_real_mensual_am, 'Costos OP AM', 'Km Realizados', 'Costo Operativo por Km Realizado')
     KPI_CO_KMP_MENSUAL_AM = calcular_kpi(costos_operativos_mensuales_am, km_prog_mensual_am, 'Costos OP AM', 'Km Programados', 'Costo Operativo por Km Programado')
 
-
+    #KPI UTILIDAD / KILOMETROS
+    KPI_UT_KMR_MENSUAL_AM = calcular_kpi(data_utilidad, km_prog_mensual_am, 'Utilidad AM', 'Km Programados', 'Utilidad por Km Programado')
+    KPI_UT_KMR_MENSUAL_TR = calcular_kpi(data_utilidad, km_prog_mensual_tr, 'Utilidad TR', 'Km Programados', 'Utilidad por Km Programado')
+    
     # Graficas
 
-    '''dual_subplot(KPI_IN_KMR_ANUAL_TR['Ingreso por Km Realizado'], KPI_CO_KMR_ANUAL_TR['Costo Operativo por Km Realizado'] ,
+    dual_subplot(KPI_IN_KMR_ANUAL_TR['Ingreso por Km Realizado'], KPI_CO_KMR_ANUAL_TR['Costo Operativo por Km Realizado'] ,
                  KPI_IN_KMP_ANUAL_TR['Ingreso por Km Programado'], KPI_CO_KMP_ANUAL_TR['Costo Operativo por Km Programado'], 
                 KPI_IN_KMR_ANUAL_TR['Periodo'], 'Año','Monto por KM', 10, 
                 'Ingreso vs Costo Operativo por Km Realizado Anual Troncal', 
                 'Ingreso vs Costo Operativo por Km Programado Anual Troncal',
-                'Ingresos', 'Costos', 'Ingresos', 'Costos')'''
+                'Ingresos', 'Costos', 'Ingresos', 'Costos')
     
     '''dual_subplot(KPI_IN_KMR_ANUAL_AM['Ingreso por Km Realizado'], KPI_CO_KMR_ANUAL_AM['Costo Operativo por Km Realizado'] ,
                  KPI_IN_KMP_ANUAL_AM['Ingreso por Km Programado'], KPI_CO_KMP_ANUAL_AM['Costo Operativo por Km Programado'], 
@@ -129,15 +136,17 @@ def main():
                 'Ingreso vs Costo Operativo por Km Programado Mensual Troncal',
                 'Ingresos', 'Costos', 'Ingresos', 'Costos')'''
     
-    dual_subplot(KPI_IN_KMR_MENSUAL_AM['Ingreso por Km Realizado'], KPI_CO_KMR_MENSUAL_AM['Costo Operativo por Km Realizado'] ,
+    '''dual_subplot(KPI_IN_KMR_MENSUAL_AM['Ingreso por Km Realizado'], KPI_CO_KMR_MENSUAL_AM['Costo Operativo por Km Realizado'] ,
                  KPI_IN_KMP_MENSUAL_AM['Ingreso por Km Programado'], KPI_CO_KMP_MENSUAL_AM['Costo Operativo por Km Programado'], 
                 KPI_IN_KMR_MENSUAL_AM['Periodo'], 'Mes','Monto por KM', 3, 
                 'Ingreso vs Costo Operativo por Km Realizado Mensual Alimentadoras', 
                 'Ingreso vs Costo Operativo por Km Programado Mensual Alimentadoras',
-                'Ingresos', 'Costos', 'Ingresos', 'Costos')
+                'Ingresos', 'Costos', 'Ingresos', 'Costos')'''
                 
 
-   
+    '''single_plot(KPI_UT_KMR_MENSUAL_AM['Utilidad por Km Programado'], KPI_UT_KMR_MENSUAL_TR['Utilidad por Km Programado'], 
+                KPI_UT_KMR_MENSUAL_AM['Periodo'], 'Mes', 'Utilidad por Km Programado', 10, 'Utilidad por Km Programado Mensual',
+                'Alimentadoras', 'Troncal')'''
 
 
 
