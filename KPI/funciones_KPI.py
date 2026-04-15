@@ -116,7 +116,7 @@ def plot_kpi_4(kpi_a, kpi_b, kpi_c=None, kpi_d=None, x=None,
         yaxis=dict(showgrid=True, gridcolor='white', dtick=dtick),
     )
 
-    fig.show()
+    return fig
 
 
 def plot_kpi_2(kpi_a, kpi_b, x=None,
@@ -181,8 +181,83 @@ def plot_kpi_2(kpi_a, kpi_b, x=None,
         yaxis=dict(showgrid=True, gridcolor='white', dtick=dtick),
     )
 
-    fig.show()
+    return fig
 
+def single_plot(
+    y1, y2,
+    x,
+    xlabel,
+    ylabel,
+    grid_step,
+    title,
+    legend1, legend2
+):
+    custom_blues = ["#1B3A6B", "#3D85C8"]
+
+    x = [str(v) for v in x]
+
+    if xlabel.lower() == 'mes':
+        meses = {
+            '01': 'ENE', '02': 'FEB', '03': 'MAR', '04': 'ABR',
+            '05': 'MAY', '06': 'JUN', '07': 'JUL', '08': 'AGO',
+            '09': 'SEP', '10': 'OCT', '11': 'NOV', '12': 'DIC'
+        }
+        def formato_tick(p):
+            año, mes = p.split('-')
+            return f"{meses[mes]}\n{año}" if mes == '01' else meses[mes]
+        x_labels = [formato_tick(v) for v in x]
+    else:
+        x_labels = x
+
+    fig = go.Figure()
+
+    # --- Línea 1 ---
+    fig.add_trace(go.Scatter(
+        x=x, y=y1, mode='lines+markers', name=legend1,
+        line=dict(color=custom_blues[0], width=2),
+        marker=dict(color=custom_blues[0], size=8),
+    ))
+
+    # --- Línea 2 ---
+    fig.add_trace(go.Scatter(
+        x=x, y=y2, mode='lines+markers', name=legend2,
+        line=dict(color=custom_blues[1], width=2),
+        marker=dict(color=custom_blues[1], size=8),
+    ))
+
+    axis_style = dict(
+        showgrid=True,
+        gridcolor='white',
+        tickmode='array',
+        tickvals=x,
+        ticktext=x_labels,
+        tickangle=-90,
+        automargin=True,
+        type='category',
+        tickfont=dict(size=9)
+    )
+
+    fig.update_layout(
+        height=500,
+        width=700,
+        plot_bgcolor='#E5ECF6',
+        paper_bgcolor='white',
+        title=dict(text=title, x=0.5, xanchor='center'),
+        legend=dict(
+            orientation='h',
+            xanchor='center',
+            x=0.5,
+            y=1.15,
+        ),
+        xaxis=dict(**axis_style, title_text=xlabel),
+        yaxis=dict(title_text=ylabel, dtick=grid_step, showgrid=True, gridcolor='white'),
+    )
+
+    fig.update_xaxes(title_text=xlabel)
+    fig.update_yaxes(title_text=ylabel)
+
+    return fig
+    
 
 def dual_subplot(
     y1a, y1b,
@@ -285,4 +360,4 @@ def dual_subplot(
     fig.update_xaxes(title_text=xlabel)
     fig.update_yaxes(title_text=ylabel)
 
-    fig.show()
+    return fig
