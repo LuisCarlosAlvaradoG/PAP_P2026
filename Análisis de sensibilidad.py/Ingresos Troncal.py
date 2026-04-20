@@ -5,7 +5,7 @@ import plotly.graph_objects as go
 df = pd.read_csv("Data/Ingresos Troncal limpio.csv")
 
 X = df[[
-    "Efectivo", "Overpay", "Monto Tarjeta Gral",
+    "Efectivo", "Monto Tarjeta Gral",
     "Monto Tarjeta Per", "Monto Tarjeta Bpd",
     "Recargas", "Recargas Error"
 ]]
