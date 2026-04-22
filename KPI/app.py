@@ -12,7 +12,7 @@ st._config.set_option('theme.textColor', '#2E1F5E')
 col1, col2, col3 = st.columns([1, 2, 1])
 with col2:
     st.markdown("""
-        <div style='text-align: center; margin-bottom: 1rem;'>
+        <div class='dash-title' style='text-align: center; margin-bottom: 1rem;'>
             <h1 style='color: #4A148C; font-size: 3.5rem; margin-bottom: 0.25rem;'>Dashboard de KPI's</h1>
             <p style='color: #7B52B8; font-size: 2rem; font-weight: 700;'>Macrobus</p>
         </div>
@@ -139,6 +139,26 @@ st.markdown("""
     .stMultiSelect [data-baseweb="tag"] { background-color: #7B52B8 !important; }
     [data-baseweb="option"]:hover { background-color: #EDE7F6 !important; }
     :root { --primary-color: #7B52B8 !important; }
+
+    @media (max-width: 768px) {
+        .dash-title h1 { font-size: 2rem !important; }
+        .dash-title p { font-size: 1.3rem !important; }
+        [data-testid="stHorizontalBlock"] { flex-wrap: wrap !important; }
+        [data-testid="stHorizontalBlock"] > [data-testid="column"] {
+            width: 100% !important;
+            flex: 0 0 100% !important;
+            min-width: 100% !important;
+        }
+        .kpi-value { font-size: 1.4rem !important; }
+        .kpi-card { padding: 1rem 0.75rem !important; }
+        .stTabs [data-baseweb="tab"] {
+            padding: 0.4rem 0.5rem !important;
+            font-size: 0.68rem !important;
+        }
+        .welcome-card { padding: 1.5rem 1.25rem !important; }
+        .welcome-grid { grid-template-columns: 1fr !important; }
+        .error-card { padding: 1.25rem !important; }
+    }
 </style>
 """, unsafe_allow_html=True)
 
@@ -493,7 +513,7 @@ if archivos_cargados:
     except Exception as e:
         st.markdown("""
         <div style="margin-top: 2rem; text-align: center;">
-            <div style="display: inline-block; background: #FFF5F5; border-radius: 1.5rem; padding: 2rem 3rem; max-width: 600px; width: 100%; border: 1px solid #F4C2C2;">
+            <div class="error-card" style="display: inline-block; background: #FFF5F5; border-radius: 1.5rem; padding: 2rem 3rem; max-width: 600px; width: 100%; border: 1px solid #F4C2C2;">
                 <p style="color: #C62828; font-size: 1.7rem; font-weight: 700; margin-bottom: 0.75rem;">ERROR AL PROCESAR LOS ARCHIVOS</p>
                 <p style="color: #7B1C1C; font-size: 1rem; font-weight: 700; line-height: 1.6; margin-bottom: 0.75rem;">Uno o más archivos no tienen el formato correcto. Por favor verifica que estás subiendo el archivo correspondiente a cada sección.</p>
         </div>
@@ -511,7 +531,7 @@ else:
 
     st.markdown("""
     <div style="margin-top: 3rem; text-align: center;">
-        <div style="display: inline-block; background: white; border-radius: 1.5rem; padding: 3rem 4rem; max-width: 650px; width: 100%; box-shadow: 0 20px 40px rgba(94,75,138,0.1); border: 1px solid #D4C5ED;">
+        <div class="welcome-card" style="display: inline-block; background: white; border-radius: 1.5rem; padding: 3rem 4rem; max-width: 650px; width: 100%; box-shadow: 0 20px 40px rgba(94,75,138,0.1); border: 1px solid #D4C5ED;">
             <p style="color: #5E4B8A; margin-bottom: 1.5rem; font-weight: 700; font-size: 1.1rem;">Carga los archivos CSV para visualizar los indicadores</p>
             <div style="margin-bottom: 1.5rem;">
                 <div style="display: flex; justify-content: space-between; margin-bottom: 0.4rem;">
@@ -522,7 +542,7 @@ else:
                     """ + barra + """
                 </div>
             </div>
-            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; text-align: left; margin-bottom: 1.5rem;">
+            <div class="welcome-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; text-align: left; margin-bottom: 1.5rem;">
                 <div style="background: #F5F0FA; padding: 0.75rem 1rem; border-radius: 0.5rem; border-left: 3px solid #5E4B8A;"><span style="font-weight: 700; color: #4A3776;">Ingresos</span><br><span style="font-size: 0.8rem; color: #9C7FBF;">Alimentadoras</span></div>
                 <div style="background: #F5F0FA; padding: 0.75rem 1rem; border-radius: 0.5rem; border-left: 3px solid #5E4B8A;"><span style="font-weight: 700; color: #4A3776;">Ingresos</span><br><span style="font-size: 0.8rem; color: #9C7FBF;">Troncal</span></div>
                 <div style="background: #F5F0FA; padding: 0.75rem 1rem; border-radius: 0.5rem; border-left: 3px solid #5E4B8A;"><span style="font-weight: 700; color: #4A3776;">Kilómetros</span><br><span style="font-size: 0.8rem; color: #9C7FBF;">Realizados y Programados</span></div>
