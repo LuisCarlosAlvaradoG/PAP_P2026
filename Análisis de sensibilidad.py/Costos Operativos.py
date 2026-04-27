@@ -70,6 +70,10 @@ fig.update_layout(
         xanchor="center"
     ),
     xaxis=dict(
+        title=dict(
+        text="Variables",  
+        font=dict(size=12)
+    ),
         tickangle=0,
         tickfont=dict(size=11),
         showgrid=True,
