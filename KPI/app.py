@@ -3,7 +3,7 @@ import pandas as pd
 import numpy as np
 from funciones_KPI import preparar_y_agrupar_ingresos, preparar_y_agrupar, calcular_kpi, dual_subplot, single_plot
 
-st.set_page_config(layout="wide", page_title="Dashboard Macrobus", initial_sidebar_state="expanded")
+st.set_page_config(layout="wide", page_title="Dashboard Cliente 1", initial_sidebar_state="expanded")
 
 st._config.set_option('theme.primaryColor', '#7B52B8')
 st._config.set_option('theme.backgroundColor', '#ffffff')
@@ -14,7 +14,7 @@ with col2:
     st.markdown("""
         <div class='dash-title' style='text-align: center; margin-bottom: 1rem;'>
             <h1 style='color: #4A148C; font-size: 3.5rem; margin-bottom: 0.25rem;'>Dashboard de KPI's</h1>
-            <p style='color: #7B52B8; font-size: 2rem; font-weight: 700;'>Macrobus</p>
+            <p style='color: #7B52B8; font-size: 2rem; font-weight: 700;'>Cliente 1</p>
         </div>
         """, unsafe_allow_html=True)
 
@@ -168,11 +168,11 @@ for key in ['file_alimentadoras', 'file_troncal', 'file_km', 'file_costos', 'fil
 
 # Sidebar
 with st.sidebar:
-    st.image("KPI/logo_macro.png", use_container_width=True)
+    # st.image("KPI/logo_macro.png", use_container_width=True)
 
     st.markdown("""
         <div style='background: rgba(255,255,255,0.08); border-radius: 0.75rem; padding: 1.2rem; margin-bottom: 1rem;'>
-            <p style='color: white; font-size: 1rem; line-height: 1.8; text-align: center; margin: 0 auto; font-weight: 700;'>Plataforma de monitoreo y análisis de indicadores financieros y operativos de Macrobus. Visualiza ingresos, costos y utilidades por kilómetro para los sistemas Troncal y Alimentadoras.</p>
+            <p style='color: white; font-size: 1rem; line-height: 1.8; text-align: center; margin: 0 auto; font-weight: 700;'>Plataforma de monitoreo y análisis de indicadores financieros y operativos de Cliente 1. Visualiza ingresos, costos y utilidades por kilómetro para los sistemas Troncal y Alimentadoras.</p>
         </div>
     """, unsafe_allow_html=True)
 
