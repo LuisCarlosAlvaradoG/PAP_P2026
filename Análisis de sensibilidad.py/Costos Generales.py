@@ -24,6 +24,7 @@ resultado = pd.DataFrame({
     "Contribucion_pct": porcentajes
 }).sort_values("Contribucion_pct", ascending=False)
 
+print(X.shape)
 
 def wrap_text(text, width=14):
     words = text.split()
@@ -73,6 +74,10 @@ fig.update_layout(
         xanchor="center"
     ),
     xaxis=dict(
+        title=dict(
+        text="Variables",  
+        font=dict(size=12)
+    ),
         tickangle=0,
         tickfont=dict(size=11),
         showgrid=True,

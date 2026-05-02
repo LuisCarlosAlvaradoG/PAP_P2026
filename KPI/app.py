@@ -354,7 +354,7 @@ if archivos_cargados:
         periodos_tr = sorted(kpis_troncal_mensual['ingreso_km_real']['Periodo'].astype(str).unique())
         periodos_am = sorted(kpis_am_mensual['ingreso_km_real']['Periodo'].astype(str).unique())
         
-        tab1, tab2, tab3, tab4 = st.tabs(["KPIs Principales", "Sistema Troncal", "Sistema Alimentadoras", "Comparación de Utilidades"])
+        tab1, tab2, tab3, tab4 = st.tabs(["KPI's Principales", "Sistema Troncal", "Sistema Alimentadoras", "Comparación de Utilidades"])
         
         with tab1:
             st.markdown("### Indicadores de Utilidad Mensual")
